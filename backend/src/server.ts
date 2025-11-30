@@ -4,6 +4,7 @@ import type { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db_config.ts';
 import userRoutes from './routes/userRoutes.ts';
+import postRoutes from './routes/postRoutes.ts';
 import cookiesParser from 'cookie-parser';
 
 
@@ -33,6 +34,7 @@ app.get('/api',(_req: Request, res: Response) => {
 
 // Import routes
 app.use('/api', userRoutes);
+app.use('/api/posts', postRoutes);
 
 
 

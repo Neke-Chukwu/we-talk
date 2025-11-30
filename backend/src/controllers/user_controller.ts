@@ -57,7 +57,7 @@ const logoutUser = (req: Request, res: Response) => {
 
 const getUserProfile = async (req: Request, res: Response) => {
     try {
-        const userId = (req as any).User._id;
+        const userId = (req as any).user._id;
         const user = await User.findById(userId).select('-password');
         if (user) {
             return res.status(200).json({ user });
