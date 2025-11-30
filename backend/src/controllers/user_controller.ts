@@ -32,8 +32,8 @@ const loginUser = async (req: Request, res: Response) => {
         if (!email || !password) {
             return res.status(400).json({ message: 'All fields are required' });
         }
-        const existingUser = await User.findOne({ email});
-    if (existingUser) {
+        const existingUser = await User.findOne({ email}).select('+password');
+    if (existingUser && existingUser.password) {
         const valid_password = await bcrypt.compare(password, existingUser.password);
         if (valid_password) {
         createToken(res, existingUser._id.toString());
