@@ -13,7 +13,7 @@ interface jwtPayload {
 const createToken = (res: Response, userId: string) => {
         const payload: jwtPayload  = {userId};
         const token = jwt.sign({ payload }, process.env.JWT_SECRET!, {
-            expiresIn: '30d',
+            expiresIn: '7d',
         });
 
         res.cookie('jwt', token, {
