@@ -1,0 +1,39 @@
+{
+	"name": "we-talk-backend",
+	"version": "1.0.0",
+	"description": "A basic TypeScript, Express, and MongoDB setup.",
+	"main": "dist/server.js",
+	"type": "module",
+	"scripts": {
+		"start": "ts-node src/server.ts",
+		"dev": "nodemon --exec \"ts-node\" src/server.ts",
+		"build": "tsc",
+		"serve": "node dist/server.js"
+	},
+	"keywords": [
+		"typescript",
+		"express",
+		"mongodb"
+	],
+	"author": "Neke chukwu",
+	"license": "ISC",
+	"dependencies": {
+		"@types/express": "^5.0.5",
+		"bcrypt": "^6.0.0",
+		"cors": "^2.8.5",
+		"dotenv": "^17.2.3",
+		"express": "^5.1.0",
+		"jsonwebtoken": "^9.0.2",
+		"mongodb": "^7.0.0",
+		"mongoose": "^9.0.0",
+		"tsc": "^2.0.4"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.19",
+		"@types/jsonwebtoken": "^9.0.10",
+		"@types/node": "^24.10.1",
+		"nodemon": "^3.1.11",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.9.3"
+	}
+}
