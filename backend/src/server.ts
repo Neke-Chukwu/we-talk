@@ -4,11 +4,13 @@ import type { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db_config.ts';
 import userRoutes from './routes/userRoutes.ts';
+import cookiesParser from 'cookie-parser';
 
 
 
 // Create an Express application
 const app = express();
+app.use(cookiesParser());
 app.use(cors());
 app.use(express.json());
 

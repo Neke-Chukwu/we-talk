@@ -12,7 +12,7 @@ interface jwtPayload {
 
 const createToken = (res: Response, userId: string) => {
         const payload: jwtPayload  = {userId};
-        const token = jwt.sign({ payload }, process.env.JWT_SECRET!, {
+        const token = jwt.sign(payload , process.env.JWT_SECRET!, {
             expiresIn: '7d',
         });
 
