@@ -60,9 +60,58 @@ const getAllPosts = async (req: Request, res: Response): Promise<Response> => {
     }
 }
 
+const updatePost = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const {id} = req.params;
+        const {title, content} = req.body;
+        const updatedData: any = {};
+        if (title){
+            updatedData.title = title;
+            updatedData.slug = await generateUniqueSlug(title);
+        }
+        if (content){
+            updatedData.content = content;
+        }
+        const update = await Post.findByIdAndUpdate(
+            id, 
+            { $set: updatedData }, // $set updates only the fields provided
+            { new: true, runValidators: true });
+
+        if (!update) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        return res.status(200).json({ 
+                message: 'Post updated successfully', 
+                post: update 
+            });
+        
+    } catch (error) {
+        console.error('Error updating post:', error);
+        return res.status(500).json({ message: 'Server error', error });
+    }
+}
+
+const deletePost = async (req: Request, res: Response): Promise<Response> => {
+    const {id} = req.params;
+    try {
+        const deletedPost = await Post.findByIdAndDelete(id);
+        if (!deletedPost) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        return res.status(200).json({
+            message: 'Post deleted successfully', 
+            postId: deletedPost._id
+        });
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        return res.status(500).json({ message: 'Server error', error });
+    }
+}
 
 export { 
     createPost,
     getSinglePost,
-    getAllPosts
+    getAllPosts,
+    updatePost,
+    deletePost
 };

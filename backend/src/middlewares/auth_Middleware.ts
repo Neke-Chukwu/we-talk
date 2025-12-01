@@ -6,9 +6,6 @@ import dotenv from 'dotenv';
 // Load .env variables
 dotenv.config();
 
-
-
-
 // Middleware to authenticate user using JWT token from cookies
 const authenticate = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.jwt;
