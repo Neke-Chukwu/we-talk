@@ -1,6 +1,7 @@
-import slugify from 'slugify';
+import SlugifyModule from 'slugify';
 import Post from '../models/post_models.ts'; // Import your model
 
+const slugify = typeof SlugifyModule === 'function' ? SlugifyModule : SlugifyModule.default;
 
 const generateUniqueSlug = async (title: string): Promise<string> => {
     // 1. Generate the base slug

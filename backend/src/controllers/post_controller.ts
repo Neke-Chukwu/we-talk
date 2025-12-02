@@ -1,5 +1,5 @@
 import Post from '../models/post_models.ts';
-import User from '../models/user_models.ts';
+//import User from '../models/user_models.ts';
 import type { Request, Response } from 'express';
 import generateUniqueSlug from '../utils/slugify_title.ts'
 
@@ -34,7 +34,10 @@ const createPost = async (req: Request, res: Response): Promise<Response> => {
 const getSinglePost = async (req: Request, res: Response): Promise<Response> => {
     try {
         const {slug} = req.params;
-        const post = await Post.findOne({slug: slug}).populate('author', 'username');
+        if (!slug) {
+            return res.status(400).json({ message: 'Slug parameter is required' });
+        }
+        const post = await Post.findOne({slug}).populate('author', 'username');
         if (post) {
             return res.status(200).json({ post });
         }
@@ -45,7 +48,7 @@ const getSinglePost = async (req: Request, res: Response): Promise<Response> => 
     }
 }
 
-const getAllPosts = async (req: Request, res: Response): Promise<Response> => {
+const getAllPosts = async (_req: Request, res: Response): Promise<Response> => {
     try{
         const posts = await Post.find({})
             //.select('-content.text') // Exclude the bulky content text for the list view

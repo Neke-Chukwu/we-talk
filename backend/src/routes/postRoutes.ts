@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import {
     createPost,
     getSinglePost,
@@ -9,7 +9,7 @@ import {
 import { authenticate } from '../middlewares/auth_Middleware.ts';
 import {isAuthor} from '../middlewares/ownership_Middleware.ts';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Route for creating a new post  
 router.route('/create').post(authenticate, createPost);

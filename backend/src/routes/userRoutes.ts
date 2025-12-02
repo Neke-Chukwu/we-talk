@@ -5,10 +5,10 @@ import {
     logoutUser 
 } from '../controllers/user_controller.ts';
 import { authenticate } from '../middlewares/auth_Middleware.ts';
-import express from 'express';
+import express, { Router } from 'express';
 
 
-const router = express.Router();
+const router: Router = express.Router();
 
 
 // Route for registering a new user - handled by registerUser controller
