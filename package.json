@@ -1,0 +1,12 @@
+
+{
+    "name": "we-talk-monorepo",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "install:all": "pnpm install",
+      "dev": "pnpm --parallel dev",
+      "build": "pnpm --filter frontend build",
+      "start": "pnpm --filter backend start"
+    }
+  }
